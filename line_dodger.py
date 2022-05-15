@@ -9,13 +9,8 @@ c_handler.setFormatter(c_format)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(c_handler)
-# logger.debug("HELLLOOO!")
-# logger.info("HELLLOOO!")
-# logger.warning("HELLLOOO!")
-# logger.error("HELLLOOO!")
 
 
-# Import and initialize the pygame library
 import pygame
 from pygame.locals import (
     K_UP,

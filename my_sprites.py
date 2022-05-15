@@ -26,7 +26,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(c_handler)
 
-# Log.basicConfig(format='%(asctime)s - %(message)s', level=logging.DEBUG)
 
 class Line:
     DEFAULT_DRIFT_ANGLE = 1 * pi / 180  # in radians. allowable values are 0 to 360
@@ -46,7 +45,6 @@ class Line:
         self.center = self.start_position
         self.drift_angle = Line.DEFAULT_DRIFT_ANGLE * self.speed # new
         self.switch_age = Line.DEFAULT_SWITCH_AGE / self.speed # new
-        logger.debug(self.surface.get_size())
         self.screen_width, self.screen_height = self.surface.get_size()
 
     def draw(self):
@@ -128,7 +126,6 @@ class Player:
         self.direction = 'stationary'
         self.screen_width, self.screen_height = self.surface.get_size()
         self.edge_rect = None
-        # logger.debug("Screen: {}, {}".format(self.screen_width, self.screen_height))
 
 
     def get_direction(self, pressed_keys):
@@ -175,7 +172,6 @@ class Player:
             
 
     def draw(self, pressed_keys):
-        height = sqrt(3) * self.size / 2
         if self.get_direction(pressed_keys) == 'neutral':
             pass
         else:
@@ -208,12 +204,6 @@ class Player:
             ])
 
 
-        # self.edge_rect = pygame.Rect(
-        #     self.anchor_x - height / 2, self.anchor_y - height / 2, 
-        #     self.size, self.screen_height
-        #     )
-        # pygame.draw
-
     def move(self):
         speed = self.speed
         if self.direction == 'stationary':
@@ -239,12 +229,8 @@ class Player:
             self.anchor_x -= sqrt(0.5)*speed
             self.anchor_y += sqrt(0.5)*speed
 
-        # logger.debug("({}, {})".format(self.anchor_x, self.anchor_y))
-
         if self.anchor_x <= 0:
-            # logger.debug("X below zero")
             self.anchor_x = self.screen_width
-            # logger.debug("New anchor x: {}".format)
         elif self.anchor_x >= self.screen_width:
             self.anchor_x = 0
 
